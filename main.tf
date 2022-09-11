@@ -35,23 +35,6 @@ resource "aws_s3_bucket_acl" "b-acl" {
   acl = "public-read"
 }
 
-# POLICY S3
-resource "aws_s3_bucket_policy" "b-policy" {
-  bucket = aws_s3_bucket.b.id
-
-  policy      = jsonencode({
-    Version   = "2012-10-17"
-    Statement = [
-      {
-        Effect    = "Allow",
-        Principal = "*",
-        Action    = "s3:GetObject",
-        Resource  = "arn:aws:s3:::s3-95128/*",
-      }
-    ]
-	})
-}
-
 #S3 UPLOAD OBJECT
 resource "aws_s3_bucket_object" "b-error" {
   key          = "error.html"
@@ -67,4 +50,21 @@ resource "aws_s3_bucket_object" "b-index" {
   source       = "index.html"
   acl          = "public-read"
   content_type = "text/html"
+}
+
+# POLICY S3
+resource "aws_s3_bucket_policy" "b-policy" {
+  bucket = aws_s3_bucket.b.id
+
+  policy      = jsonencode({
+    Version   = "2012-10-17"
+    Statement = [
+      {
+        Effect    = "Allow",
+        Principal = "*",
+        Action    = "s3:GetObject",
+        Resource  = "arn:aws:s3:::s3-95128/*",
+      }
+    ]
+	})
 }
