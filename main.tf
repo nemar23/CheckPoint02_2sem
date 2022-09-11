@@ -35,7 +35,7 @@ resource "aws_s3_bucket_acl" "b-acl" {
   acl = "public-read"
 }
 
-#S3 UPLOAD OBJECT
+#S3 Upload Object
 resource "aws_s3_bucket_object" "b-error" {
   key          = "error.html"
   bucket       = aws_s3_bucket.b.id
@@ -52,7 +52,7 @@ resource "aws_s3_bucket_object" "b-index" {
   content_type = "text/html"
 }
 
-# POLICY S3
+# Policy S3
 resource "aws_s3_bucket_policy" "b-policy" {
   bucket = aws_s3_bucket.b.id
 
@@ -67,4 +67,11 @@ resource "aws_s3_bucket_policy" "b-policy" {
       }
     ]
 	})
+}
+# S3 Bucket Versioning
+resource "aws_s3_bucket_versioning" "versionings3" {
+  bucket = aws_s3_bucket.b.id
+  versioning_configuration {
+    status = "Enabled"
+  }
 }
