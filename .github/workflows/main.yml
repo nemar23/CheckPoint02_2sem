@@ -1,4 +1,4 @@
-name: Sync GitHub to S3
+name: to S3 and AWS
 
 on:
   push:
