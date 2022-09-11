@@ -63,7 +63,7 @@ resource "aws_s3_bucket_policy" "b-policy" {
         Effect    = "Allow",
         Principal = "*",
         Action    = "s3:GetObject",
-        Resource  = "arn:aws:s3:::s3-95128/*",
+        Resource  = "arn:aws:s3:::aws-s3-luis-rm94405-checkpoint02/*",
       }
     ]
 	})
